@@ -1,18 +1,18 @@
+def if-env [ varname ] {
+    if $varname in $env {
+        ($env | get $varname )
+    } else {
+        ""
+    }
+}
 
 def rootEndpoint [ ] {
-    let key = (
-        if 'STACK_API_KEY' in $env {
-            $env.STACK_API_KEY
-        } else {
-            ""
-        }
-    )
-
     {
         scheme: "https",
         host: "api.stackexchange.com",
         params: {
-            key: $key,
+            key: (if-env STACK_API_KEY),
+            access_token: (if-env STACK_ACCESS_TOKEN),
             pagesize: 100
         }
     }
