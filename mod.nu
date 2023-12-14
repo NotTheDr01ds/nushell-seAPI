@@ -92,7 +92,7 @@ export def callSeApi [
     $res.body
 }
 
-export def-env seSetAccessToken [ scope = "read_inbox,private_info,write_access" ] {
+export def --env seSetAccessToken [ scope = "read_inbox,private_info,write_access" ] {
     let state = (random uuid)
     let oauth_params = {
         client_id: $env.STACK_CLIENT_ID,
